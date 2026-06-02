@@ -8,25 +8,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Premium Google Fonts for the Anand Pillai Look -->
+    <!-- Premium Geometric & Monospace Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Space Grotesk', 'sans-serif'],
-                        tech: ['Orbitron', 'sans-serif']
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
                     },
                     colors: {
-                        theme: {
-                            bg: '#121212',
-                            card: '#1a1a1a',
-                            accent: '#e2b714', /* Custom Gold Accent from the image */
-                            textMain: '#ffffff',
-                            textMuted: '#a0a0a0'
+                        hardware: {
+                            bg: '#0a0f1d',       /* Deep obsidian blue */
+                            card: '#111827',     /* Sleek matte background */
+                            accent: '#0ea5e9',   /* Electric Cyan */
+                            textMain: '#f3f4f6', /* Crisp white */
+                            textMuted: '#9ca3af' /* Subtle gray */
                         }
                     }
                 }
@@ -37,315 +37,304 @@
         html {
             scroll-behavior: smooth;
         }
-        /* Custom scrollbar to keep up with the dark mode look */
+        /* Custom scrollbar to keep up with the hardware look */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #121212;
+            background: #0a0f1d;
         }
         ::-webkit-scrollbar-thumb {
-            background: #2a2a2a;
+            background: #1f2937;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #e2b714;
+            background: #0ea5e9;
+        }
+        
+        /* STRICT FADING TRANSITION MECHANICS */
+        .reveal-fade {
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity;
+        }
+        .reveal-fade.active {
+            opacity: 1;
         }
     </style>
 </head>
-<body class="bg-theme-bg text-theme-textMain antialiased selection:bg-theme-accent selection:text-black">
+<body class="bg-hardware-bg text-hardware-textMain antialiased selection:bg-hardware-accent selection:text-black">
 
     <!-- NAVIGATION BAR -->
-    <nav class="sticky top-0 z-50 bg-[#121212]/90 backdrop-blur-md border-b border-zinc-800">
+    <nav class="sticky top-0 z-50 bg-[#0a0f1d]/90 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="font-tech text-lg font-black tracking-widest text-theme-accent">A J T</a>
-            <div class="hidden md:flex space-x-8 text-xs uppercase tracking-wider font-medium">
-                <a href="#about" class="hover:text-theme-accent transition-colors duration-300">About</a>
-                <a href="#education" class="hover:text-theme-accent transition-colors duration-300">Education</a>
-                <a href="#skills" class="hover:text-theme-accent transition-colors duration-300">Skills</a>
-                <a href="#experience" class="hover:text-theme-accent transition-colors duration-300">Experience</a>
-                <a href="#projects" class="hover:text-theme-accent transition-colors duration-300">Projects</a>
-                <a href="#contact" class="hover:text-theme-accent transition-colors duration-300">Contact</a>
+            <a href="#" class="font-mono text-sm font-bold tracking-widest text-hardware-accent">ABIN J THOMAS</a>
+            <div class="hidden md:flex space-x-6 text-xs uppercase font-mono tracking-wider">
+                <a href="#metrics" class="hover:text-hardware-accent transition-colors duration-300">// Metrics</a>
+                <a href="#stack" class="hover:text-hardware-accent transition-colors duration-300">// Stack</a>
+                <a href="#interface" class="hover:text-hardware-accent transition-colors duration-300">// Interface</a>
+                <a href="#blueprints" class="hover:text-hardware-accent transition-colors duration-300">// Blueprints</a>
+                <a href="#network" class="hover:text-hardware-accent transition-colors duration-300">// Network</a>
+                <a href="#terminal" class="hover:text-hardware-accent transition-colors duration-300">// Terminal</a>
             </div>
         </div>
     </nav>
 
-    <!-- PREMIUM SPLIT HERO SECTION (Replicating image_3c775b.jpg) -->
-    <header class="border-b border-zinc-800 bg-[#0d0d0d]">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row min-h-[85vh]">
+    <!-- UNIQUE HERO LAYOUT: SPLIT ASYMMETRIC GRID -->
+    <header class="border-b border-slate-800 bg-[#070a14] relative overflow-hidden">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row min-h-[80vh] items-center px-6 py-12 md:py-0 gap-12">
             
-            <!-- LEFT HALF: THE TYPOGRAPHY BLOCK -->
-            <div class="flex-1 flex flex-col justify-center px-8 py-16 md:py-0 md:pr-12 border-b md:border-b-0 md:border-r border-zinc-800">
-                <h1 class="font-tech text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-none mb-6">
-                    ABIN J<br><span class="text-neutral-400">THOMAS</span>
-                </h1>
-                
-                <!-- Subtitle Indicator (The Hook style) -->
-                <div class="border-l-2 border-theme-accent pl-4 my-6 space-y-2">
-                    <p class="font-tech text-xs tracking-widest text-zinc-500 uppercase">Chapter 00 // Core Target</p>
-                    <p class="text-xl text-neutral-200 font-medium">Electronics & Communication Engineering Graduate[cite: 1]</p>
-                    <p class="text-sm text-theme-accent font-mono tracking-tight">Focusing on physical hardware architecture and real-world system implementations.</p>
-                </div>
-                
-                <!-- Action Buttons -->
-                <div class="flex flex-wrap gap-4 mt-8">
-                    <a href="Abin_Resume.pdf" download="Abin_J_Thomas_Resume.pdf" class="bg-theme-accent hover:bg-yellow-500 text-black px-6 py-3 font-medium tracking-wide transition-all duration-300 flex items-center space-x-2">
-                        <i class="fa-solid fa-file-arrow-down"></i>
-                        <span class="font-bold uppercase text-xs tracking-wider">Download Resume</span>
-                    </a>
-                    <a href="mailto:abinjthomas059@gmail.com" class="border border-zinc-700 hover:border-theme-accent text-white px-6 py-3 font-medium tracking-wide transition-all duration-300 flex items-center space-x-2 bg-zinc-900/50">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span class="uppercase text-xs tracking-wider text-neutral-300">Get In Touch</span>
-                    </a>
+            <!-- LEFT ASSET FRAME -->
+            <div class="w-full md:w-2/5 flex justify-center md:justify-start">
+                <div class="relative group w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden border-2 border-slate-800 group-hover:border-hardware-accent transition-all duration-500 shadow-2xl">
+                    <div class="absolute inset-0 bg-hardware-accent/10 group-hover:bg-transparent transition-all duration-500 z-10"></div>
+                    <img src="Abin J Thomas.png" alt="ABIN J THOMAS" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100">
                 </div>
             </div>
-            
-            <!-- RIGHT HALF: FIXED HEIGHT MINIMAL IMAGE FRAME -->
-            <div class="flex-1 relative bg-zinc-950 flex items-center justify-center p-0 overflow-hidden min-h-[400px] md:min-h-0">
-                <img src="Abin J Thomas.png" alt="ABIN J THOMAS" class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700 ease-in-out absolute inset-0">
+
+            <!-- RIGHT TEXT SYSTEMS -->
+            <div class="w-full md:w-3/5 flex flex-col justify-center text-center md:text-left">
+                <span class="font-mono text-xs tracking-widest text-hardware-accent uppercase mb-2">System Initialized // Graduate Engineer</span>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 uppercase">
+                    ABIN J THOMAS
+                </h1>
+                <p class="text-lg md:text-xl text-hardware-textMuted max-w-xl font-light mb-8">
+                    Electronics & Communication Engineering Graduate[cite: 1]. Specializing in core embedded code tracks, custom analytical sensors, and integrated physical hardware interfaces.
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="Abin_Resume.pdf" download="Abin_J_Thomas_Resume.pdf" class="bg-hardware-accent hover:bg-sky-400 text-black px-6 py-3 rounded-xl font-medium tracking-wide transition-all duration-300 flex items-center space-x-2 shadow-lg shadow-hardware-accent/10">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                        <span class="font-bold text-xs uppercase tracking-wider">Download Resume</span>
+                    </a>
+                    <a href="mailto:abinjthomas059@gmail.com" class="border border-slate-700 hover:border-hardware-accent text-white px-6 py-3 rounded-xl font-medium tracking-wide transition-all duration-300 flex items-center space-x-2 bg-slate-900/30">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span class="text-xs uppercase tracking-wider text-slate-300">Get In Touch</span>
+                    </a>
+                </div>
             </div>
 
         </div>
     </header>
 
-    <!-- MAIN APP WRAPPER -->
-    <main class="max-w-5xl mx-auto px-6 py-20 space-y-32">
+    <!-- CONTENT FIELDS -->
+    <main class="max-w-5xl mx-auto px-6 py-24 space-y-32">
 
-        <!-- BRIEF SUMMARY -->
-        <section id="about" class="scroll-mt-24 max-w-3xl">
-            <h2 class="font-tech text-xs tracking-widest text-theme-accent uppercase mb-4">// Executive Summary</h2>
-            <p class="text-xl md:text-2xl font-light leading-relaxed text-neutral-300">
-                Electronics and Communication Engineering graduate with a strong foundation in embedded systems, IoT, and sensor-based technologies[cite: 1]. Experienced in developing academic projects with practical hardware and software integration[cite: 1]. Possesses strong analytical, communication, and teamwork skills with the ability to adapt quickly and contribute effectively in professional environments[cite: 1].
-            </p>
-        </section>
-
-        <!-- EDUCATION GRAPH -->
-        <section id="education" class="scroll-mt-24">
-            <h2 class="font-tech text-xs tracking-widest text-theme-accent uppercase mb-10">// Educational Pipeline</h2>
-            <div class="space-y-6">
-                <!-- Main Degree -->
-                <div class="bg-theme-card p-8 border border-zinc-800 relative overflow-hidden group hover:border-zinc-700 transition">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                        <div>
-                            <span class="font-tech text-xs text-zinc-500 uppercase tracking-widest block mb-1">Undergraduate Degree</span>
-                            <h3 class="text-2xl font-bold text-white">B.Tech. in Electronics & Communication Engineering</h3>
-                            <p class="text-neutral-400 mt-1">Mar Baselios College of Engineering and Technology (Autonomous)[cite: 1]</p>
-                            <div class="inline-block bg-zinc-900 border border-zinc-800 text-theme-accent font-mono text-sm px-3 py-1 mt-4">
-                                CGPA: 7.32 / 10[cite: 1]
+        <!-- METRICS SECTION (Summary & Education) -->
+        <section id="metrics" class="scroll-mt-28 reveal-fade">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="md:col-span-1">
+                    <h2 class="font-mono text-xs tracking-widest text-hardware-accent uppercase mb-3">// Metrics</h2>
+                    <p class="text-xs text-hardware-textMuted uppercase tracking-wider font-mono">Academic Baseline & Core Background parameters.</p>
+                </div>
+                <div class="md:col-span-2 space-y-8">
+                    <p class="text-lg font-light leading-relaxed text-slate-300">
+                        Electronics and Communication Engineering graduate with a strong foundation in embedded systems, IoT, and sensor-based technologies[cite: 1]. Experienced in developing academic projects with practical hardware and software integration[cite: 1]. Possesses strong analytical, communication, and teamwork skills with the ability to adapt quickly and contribute effectively in professional environments[cite: 1].
+                    </p>
+                    
+                    <div class="border-t border-slate-800/80 pt-8 space-y-6">
+                        <!-- College Card -->
+                        <div class="bg-hardware-card p-6 border border-slate-800/60 rounded-2xl">
+                            <span class="font-mono text-[10px] text-hardware-accent uppercase block mb-1">Undergraduate Degree</span>
+                            <h3 class="text-xl font-bold text-white">B.Tech. in Electronics & Communication Engineering</h3>
+                            <p class="text-hardware-textMuted text-sm mt-1">Mar Baselios College of Engineering and Technology (Autonomous)[cite: 1]</p>
+                            <div class="flex justify-between items-center mt-4">
+                                <span class="bg-slate-900 border border-slate-800 text-hardware-accent font-mono text-xs px-3 py-1 rounded-lg">CGPA: 7.32 / 10[cite: 1]</span>
+                                <span class="font-mono text-xs text-hardware-textMuted">Timeline: 2022 - 2026[cite: 1]</span>
                             </div>
                         </div>
-                        <span class="font-mono text-sm bg-zinc-900 border border-zinc-800 text-zinc-400 px-3 py-1 rounded-none">2022 - 2026[cite: 1]</span>
-                    </div>
-                </div>
-                <!-- Schooling Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-theme-card p-6 border border-zinc-800">
-                        <span class="font-tech text-xs text-zinc-500 uppercase tracking-widest block mb-1">Higher Secondary</span>
-                        <span class="font-mono text-xs text-zinc-500 float-right">2022[cite: 1]</span>
-                        <h4 class="text-lg font-bold text-white mt-1">12th Standard (KBHSE)[cite: 1]</h4>
-                        <p class="text-sm text-neutral-400">St. Behanans Higher Secondary School[cite: 1]</p>
-                        <p class="text-sm text-theme-accent font-mono mt-3">Score: 91.30%[cite: 1]</p>
-                    </div>
-                    <div class="bg-theme-card p-6 border border-zinc-800">
-                        <span class="font-tech text-xs text-zinc-500 uppercase tracking-widest block mb-1">Secondary School</span>
-                        <span class="font-mono text-xs text-zinc-500 float-right">2020[cite: 1]</span>
-                        <h4 class="text-lg font-bold text-white mt-1">10th Standard (CBSE)[cite: 1]</h4>
-                        <p class="text-sm text-neutral-400">Little Flower Vidyanikethan & Junior College[cite: 1]</p>
-                        <p class="text-sm text-theme-accent font-mono mt-3">Score: 88.80%[cite: 1]</p>
+                        <!-- Schools -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-hardware-card/60 p-5 border border-slate-800/40 rounded-xl">
+                                <span class="font-mono text-[10px] text-slate-500 uppercase block">Higher Secondary</span>
+                                <h4 class="text-base font-bold text-white mt-1">12th Standard (KBHSE)[cite: 1]</h4>
+                                <p class="text-xs text-hardware-textMuted mt-0.5">St. Behanans Higher Secondary School[cite: 1]</p>
+                                <p class="text-xs text-hardware-accent font-mono mt-3">Score: 91.30%[cite: 1]</p>
+                            </div>
+                            <div class="bg-hardware-card/60 p-5 border border-slate-800/40 rounded-xl">
+                                <span class="font-mono text-[10px] text-slate-500 uppercase block">Secondary Education</span>
+                                <h4 class="text-base font-bold text-white mt-1">10th Standard (CBSE)[cite: 1]</h4>
+                                <p class="text-xs text-hardware-textMuted mt-0.5">Little Flower Vidyanikethan & Junior College[cite: 1]</p>
+                                <p class="text-xs text-hardware-accent font-mono mt-3">Score: 88.80%[cite: 1]</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TECHNICAL SKILLS MATRIX -->
-        <section id="skills" class="scroll-mt-24">
-            <h2 class="font-tech text-xs tracking-widest text-theme-accent uppercase mb-10">// Core Stack & Competencies</h2>
+        <!-- STACK SECTION (Technical Matrix) -->
+        <section id="stack" class="scroll-mt-28 reveal-fade">
+            <h2 class="font-mono text-xs tracking-widest text-hardware-accent uppercase mb-10">// Stack</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="bg-theme-card p-5 border border-zinc-800 flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center text-theme-accent"><i class="fa-solid fa-microchip"></i></div>
+                <div class="bg-hardware-card p-5 border border-slate-800 rounded-xl flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-slate-900 border border-slate-800 flex items-center justify-center text-hardware-accent rounded-lg mt-0.5"><i class="fa-solid fa-microchip text-xs"></i></div>
                     <div>
-                        <h5 class="text-sm font-bold text-white">IoT Systems</h5>
-                        <p class="text-xs text-zinc-500">Sensor & Cloud Architecture[cite: 1]</p>
+                        <h5 class="text-sm font-bold text-white">IoT Infrastructure</h5>
+                        <p class="text-xs text-hardware-textMuted mt-1">Sensor Transducers & Custom Core Integration Systems[cite: 1].</p>
                     </div>
                 </div>
-                <div class="bg-theme-card p-5 border border-zinc-800 flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center text-theme-accent"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="bg-hardware-card p-5 border border-slate-800 rounded-xl flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-slate-900 border border-slate-800 flex items-center justify-center text-hardware-accent rounded-lg mt-0.5"><i class="fa-solid fa-laptop-code text-xs"></i></div>
                     <div>
-                        <h5 class="text-sm font-bold text-white">Development Platforms</h5>
-                        <p class="text-xs text-zinc-500">Arduino & Tinkercad Environment[cite: 1]</p>
+                        <h5 class="text-sm font-bold text-white">Simulation Architectures</h5>
+                        <p class="text-xs text-hardware-textMuted mt-1">Arduino Structural Framework Deployments & Tinkercad Modeling[cite: 1].</p>
                     </div>
                 </div>
-                <div class="bg-theme-card p-5 border border-zinc-800 flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center text-theme-accent"><i class="fa-solid fa-code"></i></div>
+                <div class="bg-hardware-card p-5 border border-slate-800 rounded-xl flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-slate-900 border border-slate-800 flex items-center justify-center text-hardware-accent rounded-lg mt-0.5"><i class="fa-solid fa-code text-xs"></i></div>
                     <div>
-                        <h5 class="text-sm font-bold text-white">Core Languages</h5>
-                        <p class="text-xs text-zinc-500">C Programming & MATLAB Frameworks[cite: 1]</p>
+                        <h5 class="text-sm font-bold text-white">Computing Engines</h5>
+                        <p class="text-xs text-hardware-textMuted mt-1">Embedded C Programming Scripts & Built-in MATLAB Calculations[cite: 1].</p>
                     </div>
                 </div>
-                <div class="bg-theme-card p-5 border border-zinc-800 flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center text-theme-accent"><i class="fa-solid fa-compass-drafting"></i></div>
+                <div class="bg-hardware-card p-5 border border-slate-800 rounded-xl flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-slate-900 border border-slate-800 flex items-center justify-center text-hardware-accent rounded-lg mt-0.5"><i class="fa-solid fa-compass-drafting text-xs"></i></div>
                     <div>
-                        <h5 class="text-sm font-bold text-white">Hardware Topology</h5>
-                        <p class="text-xs text-zinc-500">Circuit Design & Lab Validation[cite: 1]</p>
+                        <h5 class="text-sm font-bold text-white">Hardware Topologies</h5>
+                        <p class="text-xs text-hardware-textMuted mt-1">Circuit Blueprinting and Practical Lab Bench Board Verification[cite: 1].</p>
                     </div>
                 </div>
-                <div class="bg-theme-card p-5 border border-zinc-800 flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center text-theme-accent"><i class="fa-solid fa-gears"></i></div>
+                <div class="bg-hardware-card p-5 border border-slate-800 rounded-xl flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-slate-900 border border-slate-800 flex items-center justify-center text-hardware-accent rounded-lg mt-0.5"><i class="fa-solid fa-gears text-xs"></i></div>
                     <div>
-                        <h5 class="text-sm font-bold text-white">Diagnostic Testing</h5>
-                        <p class="text-xs text-zinc-500">Hardware Debugging & Optimization[cite: 1]</p>
+                        <h5 class="text-sm font-bold text-white">System Debugging</h5>
+                        <p class="text-xs text-hardware-textMuted mt-1">Oscilloscope Diagnostics, Troubleshooting, and Signal Calibration[cite: 1].</p>
                     </div>
                 </div>
-                <div class="bg-theme-card p-5 border border-zinc-800 flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-zinc-900 border border-zinc-800 flex items-center justify-center text-theme-accent"><i class="fa-solid fa-users"></i></div>
+                <div class="bg-hardware-card p-5 border border-slate-800 rounded-xl flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-slate-900 border border-slate-800 flex items-center justify-center text-hardware-accent rounded-lg mt-0.5"><i class="fa-solid fa-users text-xs"></i></div>
                     <div>
-                        <h5 class="text-sm font-bold text-white">Project Lifecycles</h5>
-                        <p class="text-xs text-zinc-500">Team Leadership & Scoping[cite: 1]</p>
+                        <h5 class="text-sm font-bold text-white">Project Engineering</h5>
+                        <p class="text-xs text-hardware-textMuted mt-1">Team Scoping Parameters & Modern Cross-Disciplinary Integration[cite: 1].</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- INDUSTRIAL EXPERIENCE -->
-        <section id="experience" class="scroll-mt-24">
-            <h2 class="font-tech text-xs tracking-widest text-theme-accent uppercase mb-10">// Field Experience</h2>
-            <div class="bg-theme-card p-8 border border-zinc-800 space-y-6">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+        <!-- INTERFACE SECTION (Internship) -->
+        <section id="interface" class="scroll-mt-28 reveal-fade">
+            <h2 class="font-mono text-xs tracking-widest text-hardware-accent uppercase mb-10">// Interface</h2>
+            <div class="bg-hardware-card p-8 border border-slate-800 rounded-2xl relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                     <div>
-                        <h3 class="text-2xl font-bold text-white">Engineering Intern</h3>
-                        <p class="text-theme-accent font-medium mt-1">IEEE EMBS (Assistive Technology Field Domain)[cite: 1]</p>
+                        <span class="font-mono text-[10px] text-hardware-accent uppercase block mb-1">Industrial Field Verification</span>
+                        <h3 class="text-xl font-bold text-white">Engineering Intern</h3>
+                        <p class="text-hardware-textMuted mt-1">IEEE EMBS — Assistive Technology Systems Deployment[cite: 1]</p>
                     </div>
-                    <span class="font-mono text-xs bg-zinc-900 border border-zinc-800 text-zinc-400 px-3 py-1">June 2025[cite: 1]</span>
+                    <span class="font-mono text-xs bg-slate-900 border border-slate-800 text-hardware-textMuted px-3 py-1 rounded-lg">Timeline: June 2025[cite: 1]</span>
                 </div>
-                <p class="text-neutral-400 leading-relaxed">
-                    Evaluated and researched practical hardware deployment configurations inside specialized bio-medical institutions and assistive clinical sites to track hardware integration requirements[cite: 1].
+                <p class="text-hardware-textMuted text-sm mt-4 leading-relaxed max-w-3xl">
+                    Conducted exhaustive empirical field research across technical medical complexes, documenting sensor signal behaviors and instrumentation workflow requirements[cite: 1].
                 </p>
-                <div class="border-t border-zinc-800 pt-4">
-                    <span class="font-tech text-[10px] text-zinc-500 tracking-widest uppercase block mb-3">Field Validation Infrastructure Tariffs</span>
+                <div class="mt-6 pt-6 border-t border-slate-800/60">
+                    <span class="font-mono text-[10px] text-slate-500 uppercase block mb-3">Field Inspection Node Infrastructure</span>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-zinc-900 border border-zinc-800 text-neutral-300 text-xs px-3 py-1">CDC Trivandrum Medical College[cite: 1]</span>
-                        <span class="bg-zinc-900 border border-zinc-800 text-neutral-300 text-xs px-3 py-1">Pallium India[cite: 1]</span>
-                        <span class="bg-zinc-900 border border-zinc-800 text-neutral-300 text-xs px-3 py-1">SCTIMST Poojappura[cite: 1]</span>
-                        <span class="bg-zinc-900 border border-zinc-800 text-neutral-300 text-xs px-3 py-1">NISH Akkulam[cite: 1]</span>
+                        <span class="bg-slate-900 border border-slate-800 text-slate-300 text-xs px-3 py-1.5 rounded-lg">CDC Trivandrum Medical College[cite: 1]</span>
+                        <span class="bg-slate-900 border border-slate-800 text-slate-300 text-xs px-3 py-1.5 rounded-lg">Pallium India[cite: 1]</span>
+                        <span class="bg-slate-900 border border-slate-800 text-slate-300 text-xs px-3 py-1.5 rounded-lg">SCTIMST Poojappura[cite: 1]</span>
+                        <span class="bg-slate-900 border border-slate-800 text-slate-300 text-xs px-3 py-1.5 rounded-lg">NISH Akkulam[cite: 1]</span>
                     </div>
                 </div>
-                <p class="text-sm text-neutral-300 italic bg-zinc-900/50 p-3 border-l-2 border-theme-accent">
-                    💡 Milestone Deliverable: Partnered inside a core project team prototyping an automated sensor tracking solution layout for autistic students[cite: 1].
-                </p>
+                <div class="mt-4 p-3 bg-slate-900/40 rounded-xl border border-slate-800 flex items-center space-x-2 text-xs text-hardware-accent font-mono">
+                    <span class="text-white">💡 Deliverable Data:</span>
+                    <span>Partnered in a core development layout engineering a safe proximity detection system layer for autistic student tracking parameters[cite: 1].</span>
+                </div>
             </div>
         </section>
 
-        <!-- ACADEMIC PROJECTS -->
-        <section id="projects" class="scroll-mt-24">
-            <h2 class="font-tech text-xs tracking-widest text-theme-accent uppercase mb-10">// Project Repositories</h2>
-            <div class="grid grid-cols-1 gap-8">
+        <!-- BLUEPRINTS SECTION (Projects - Chronological Fading Order) -->
+        <section id="blueprints" class="scroll-mt-28 reveal-fade">
+            <h2 class="font-mono text-xs tracking-widest text-hardware-accent uppercase mb-10">// Blueprints</h2>
+            <div class="grid grid-cols-1 gap-6">
 
-                <!-- Case 1 -->
-                <div class="bg-theme-card border border-zinc-800 group hover:border-zinc-700 transition duration-300">
+                <!-- Blueprint 1: AERION Spirometer (Most Recent) -->
+                <div class="bg-hardware-card border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition duration-300 reveal-fade">
+                    <div class="p-6 md:p-8 space-y-3">
+                        <h3 class="text-xl font-bold text-white">AERION Spirometer Module[cite: 1]</h3>
+                        <p class="text-xs font-mono text-slate-500">Mentor: Dr. Lani Rachel Mathew | Assembly Index: 4 Engineers[cite: 1]</p>
+                        <p class="text-sm text-hardware-textMuted leading-relaxed">
+                            Fabricated a structural diagnostics architecture assembling a localized, pocket-sized spirometer array module tracking and computing diagnostic pulmonary metrics linked natively against live smartphone interface layers and environmental ambient air sensor tracks[cite: 1].
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Blueprint 2: Glucose Monitoring (Prior Project) -->
+                <div class="bg-hardware-card border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition duration-300 reveal-fade">
                     <div class="p-6 md:p-8 space-y-4">
-                        <span class="font-tech text-[10px] text-theme-accent tracking-widest uppercase block">// Registry 01</span>
-                        <h3 class="text-2xl font-bold text-white">Non-Invasive Glucose Monitoring System[cite: 1]</h3>
-                        <p class="text-xs font-mono text-zinc-500">Academic Mentor: Dr. Lani Rachel Mathew | Team Assembly: 4 Members[cite: 1]</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-neutral-400 pt-2">
+                        <h3 class="text-xl font-bold text-white">Non-Invasive Glucose Monitoring System[cite: 1]</h3>
+                        <p class="text-xs font-mono text-slate-500">Mentor: Dr. Lani Rachel Mathew | Assembly Index: 4 Engineers[cite: 1]</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-hardware-textMuted pt-2">
                             <div>
-                                <strong class="text-white block mb-1 font-medium">The Engineering Constraint:</strong>
-                                Traditional testing demands invasive glucose tracking vectors causing constant skin distress and patient management friction[cite: 1].
+                                <span class="text-white block font-medium mb-1">// Operational Constraint</span>
+                                Conventional home glucose metrics require constant painful tissue piercing, leading to low patient usage compliance rates and cellular infection paths[cite: 1].
                             </div>
                             <div>
-                                <strong class="text-white block mb-1 font-medium">The Implemented Solution:</strong>
-                                Built a hardware modeling solution interpreting absorption signatures across complex vascular layers utilizing non-invasive Near-Infrared (NIR) spectroscopic frameworks[cite: 1].
+                                <span class="text-white block font-medium mb-1">// Implemented Architecture</span>
+                                Designed an optoelectronic system prototyping non-invasive tracking models by driving wavelengths across vascular paths via custom Near-Infrared (NIR) spectroscopic logic[cite: 1].
                             </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/60">
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">Hardware Prototyping[cite: 1]</span>
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">Circuit Design[cite: 1]</span>
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">Spectroscopy Systems[cite: 1]</span>
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">Tinkercad Modeling[cite: 1]</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Case 2 -->
-                <div class="bg-theme-card border border-zinc-800 group hover:border-zinc-700 transition duration-300">
-                    <div class="p-6 md:p-8 space-y-4">
-                        <span class="font-tech text-[10px] text-theme-accent tracking-widest uppercase block">// Registry 02</span>
-                        <h3 class="text-2xl font-bold text-white">AERION Spirometer[cite: 1]</h3>
-                        <p class="text-xs font-mono text-zinc-500">Academic Mentor: Dr. Lani Rachel Mathew | Team Assembly: 4 Members[cite: 1]</p>
-                        <p class="text-sm text-neutral-400 leading-relaxed">
-                            Fabricated a structural diagnostics architecture assembling a localized, pocket-sized spirometer array module tracking and computing diagnostic pulmonary metrics linked natively against live smartphone interface layers and environmental ambient sensor tracks[cite: 1].
+                <!-- Blueprint 3: ProxiSensor (Earlier Project) -->
+                <div class="bg-hardware-card border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition duration-300 reveal-fade">
+                    <div class="p-6 md:p-8 space-y-3">
+                        <h3 class="text-xl font-bold text-white">ProxiSensor Apparatus[cite: 1]</h3>
+                        <p class="text-xs font-mono text-slate-500">Mentor: Mr. Aswin R B | Assembly Index: 5 Engineers[cite: 1]</p>
+                        <p class="text-sm text-hardware-textMuted leading-relaxed">
+                            Engineered an interactive spatial tracking apparatus configured to output safety alert cues helping autistic students accurately sense and maintain safe proximity metrics in public places[cite: 1].
                         </p>
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">Biomedical Telemetry[cite: 1]</span>
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">IoT Hardware Node[cite: 1]</span>
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">App Interface Integration[cite: 1]</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case 3 -->
-                <div class="bg-theme-card border border-zinc-800 group hover:border-zinc-700 transition duration-300">
-                    <div class="p-6 md:p-8 space-y-4">
-                        <span class="font-tech text-[10px] text-theme-accent tracking-widest uppercase block">// Registry 03</span>
-                        <h3 class="text-2xl font-bold text-white">ProxiSensor System[cite: 1]</h3>
-                        <p class="text-xs font-mono text-zinc-500">Academic Mentor: Mr. Aswin R B | Team Assembly: 5 Members[cite: 1]</p>
-                        <p class="text-sm text-neutral-400 leading-relaxed">
-                            Engineered an interactive spatial tracking apparatus configured to output safety alert cues helping autistic students accurately sense and maintain safe proximity metrics in public environments[cite: 1].
-                        </p>
-                        <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">Arduino UNO Framework[cite: 1]</span>
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">MATLAB Parsing[cite: 1]</span>
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">Tinkercad Simulation[cite: 1]</span>
-                            <span class="bg-zinc-900 text-zinc-400 text-xs px-2.5 py-1 border border-zinc-800">System Troubleshooting[cite: 1]</span>
-                        </div>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- EXTRA VOLUNTEERING -->
-        <section id="extracurricular" class="scroll-mt-24">
-            <h2 class="font-tech text-xs tracking-widest text-theme-accent uppercase mb-10">// Collective Networks</h2>
+        <!-- NETWORK SECTION (Extra-Curriculars) -->
+        <section id="network" class="scroll-mt-28 reveal-fade">
+            <h2 class="font-mono text-xs tracking-widest text-hardware-accent uppercase mb-10">// Network</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="border border-zinc-800 p-6 bg-theme-card/40">
-                    <h4 class="text-lg font-bold text-white flex items-center"><i class="fa-solid fa-cross text-zinc-500 mr-3"></i> Jesus Youth Movement[cite: 1]</h4>
-                    <ul class="mt-4 space-y-2 text-sm text-neutral-400 list-none pl-0">
-                        <li class="flex items-start"><span class="text-theme-accent mr-2">▪</span> Active Event Management & Operational Coordination[cite: 1]</li>
-                        <li class="flex items-start"><span class="text-theme-accent mr-2">▪</span> Led community welfare and structural outreach setups[cite: 1]</li>
+                <div class="border border-slate-800 p-6 bg-hardware-card/30 rounded-2xl">
+                    <h4 class="text-base font-bold text-white flex items-center"><i class="fa-solid fa-cross text-slate-500 mr-3 text-xs"></i> Jesus Youth Movement[cite: 1]</h4>
+                    <ul class="mt-4 space-y-2 text-xs text-hardware-textMuted font-mono">
+                        <li class="flex items-start"><span class="text-hardware-accent mr-2">▪</span> Active regional event coordinator managing community outreach initiatives[cite: 1].</li>
+                        <li class="flex items-start"><span class="text-hardware-accent mr-2">▪</span> Orchestrated operational timelines during volunteer configurations[cite: 1].</li>
                     </ul>
                 </div>
-                <div class="border border-zinc-800 p-6 bg-theme-card/40">
-                    <h4 class="text-lg font-bold text-white flex items-center"><i class="fa-solid fa-hands-holding text-zinc-500 mr-3"></i> National Service Scheme (NSS)[cite: 1]</h4>
-                    <ul class="mt-4 space-y-2 text-sm text-neutral-400 list-none pl-0">
-                        <li class="flex items-start"><span class="text-theme-accent mr-2">▪</span> Active regional developmental volunteering initiatives[cite: 1]</li>
-                        <li class="flex items-start"><span class="text-theme-accent mr-2">▪</span> Engineering and tech skill deployment workshop coordinator[cite: 1]</li>
+                <div class="border border-slate-800 p-6 bg-hardware-card/30 rounded-2xl">
+                    <h4 class="text-base font-bold text-white flex items-center"><i class="fa-solid fa-hands-holding text-slate-500 mr-3 text-xs"></i> National Service Scheme (NSS)[cite: 1]</h4>
+                    <ul class="mt-4 space-y-2 text-xs text-hardware-textMuted font-mono">
+                        <li class="flex items-start"><span class="text-hardware-accent mr-2">▪</span> Committed NSS welfare asset deploying local municipal support structures[cite: 1].</li>
+                        <li class="flex items-start"><span class="text-hardware-accent mr-2">▪</span> Active planning representative across multi-tier regional technical workshops[cite: 1].</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- ENTERPRISE CONTACT HUB -->
-        <section id="contact" class="scroll-mt-24 border border-zinc-800 bg-[#161616] p-8 md:p-12 text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-1 h-full bg-theme-accent"></div>
-            <h2 class="font-tech text-2xl font-black tracking-wide text-white mb-2 uppercase">Establish Communication Terminal</h2>
-            <p class="text-zinc-500 max-w-md mx-auto mb-10 text-xs uppercase tracking-widest font-mono">
-                System open for technical review and graduate hardware infrastructure employment placement tracks.
+        <!-- TERMINAL SECTION (Contact Hub) -->
+        <section id="terminal" class="scroll-mt-28 border border-slate-800 bg-[#070a14] p-8 md:p-12 text-center relative overflow-hidden rounded-3xl reveal-fade">
+            <div class="absolute top-0 left-0 w-1 h-full bg-hardware-accent"></div>
+            <h2 class="font-mono text-xl font-bold tracking-wide text-white mb-2 uppercase">Establish Secure Link</h2>
+            <p class="text-slate-500 max-w-md mx-auto mb-10 text-[10px] uppercase tracking-widest font-mono">
+                Terminal active for data review and technical corporate employment pipelines.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-                <a href="mailto:abinjthomas059@gmail.com" class="p-4 bg-zinc-900 border border-zinc-800 hover:border-theme-accent transition-all duration-300 group">
-                    <i class="fa-solid fa-envelope text-xl text-zinc-500 group-hover:text-theme-accent mb-2 block"></i>
-                    <span class="block text-[10px] uppercase font-mono tracking-widest text-zinc-500">Inbound Mail</span>
-                    <span class="text-xs text-neutral-300 font-medium break-all block mt-1">abinjthomas059@gmail.com[cite: 1]</span>
+                <a href="mailto:abinjthomas059@gmail.com" class="p-5 bg-hardware-card border border-slate-800 rounded-2xl hover:border-hardware-accent transition-all duration-300 group">
+                    <i class="fa-solid fa-envelope text-xl text-slate-500 group-hover:text-hardware-accent mb-2 block"></i>
+                    <span class="block text-[10px] font-mono tracking-widest text-slate-500 uppercase">Gmail Client</span>
+                    <span class="text-xs text-slate-300 font-medium break-all block mt-1">abinjthomas059@gmail.com[cite: 1]</span>
                 </a>
-                <a href="https://linkedin.com/in/abinjthomas" target="_blank" class="p-4 bg-zinc-900 border border-zinc-800 hover:border-theme-accent transition-all duration-300 group">
-                    <i class="fa-brands fa-linkedin text-xl text-zinc-500 group-hover:text-theme-accent mb-2 block"></i>
-                    <span class="block text-[10px] uppercase font-mono tracking-widest text-zinc-500">LinkedIn Terminal</span>
-                    <span class="text-xs text-neutral-300 font-medium block mt-1">/in/abinjthomas[cite: 1]</span>
+                <a href="https://linkedin.com/in/abinjthomas" target="_blank" class="p-5 bg-hardware-card border border-slate-800 rounded-2xl hover:border-hardware-accent transition-all duration-300 group">
+                    <i class="fa-brands fa-linkedin text-xl text-slate-500 group-hover:text-theme-accent mb-2 block"></i>
+                    <span class="block text-[10px] font-mono tracking-widest text-slate-500 uppercase">LinkedIn Node</span>
+                    <span class="text-xs text-slate-300 font-medium block mt-1">/in/abinjthomas[cite: 1]</span>
                 </a>
-                <div class="p-4 bg-zinc-900 border border-zinc-800 group">
-                    <i class="fa-solid fa-phone text-xl text-zinc-500 mb-2 block"></i>
-                    <span class="block text-[10px] uppercase font-mono tracking-widest text-zinc-500">Secure Line</span>
-                    <span class="text-xs text-neutral-300 font-medium block mt-1">+91-9400792728[cite: 1]</span>
+                <div class="p-5 bg-hardware-card border border-slate-800 rounded-2xl group">
+                    <i class="fa-solid fa-phone text-xl text-slate-500 mb-2 block"></i>
+                    <span class="block text-[10px] font-mono tracking-widest text-slate-500 uppercase">Direct Secure Line</span>
+                    <span class="text-xs text-slate-300 font-medium block mt-1">+91-9400792728[cite: 1]</span>
                 </div>
             </div>
         </section>
@@ -353,9 +342,31 @@
     </main>
 
     <!-- FOOTER DESIGN -->
-    <footer class="bg-[#0a0a0a] text-zinc-600 text-center py-8 text-[11px] font-mono tracking-wider border-t border-zinc-900">
-        <p class="uppercase">&copy; 2026 ABIN J THOMAS[cite: 1] // ALL SYSTEMS DEPLOYED VIA GITHUB PAGES // DESIGN INSPIRED BY ANAND PILLAI ARCHITECTURE.</p>
+    <footer class="bg-[#05070f] text-slate-600 text-center py-8 text-[10px] font-mono tracking-wider border-t border-slate-900">
+        <p class="uppercase">&copy; 2026 ABIN J THOMAS[cite: 1] // HARDWARE INFRASTRUCTURE HOSTED VIA GITHUB ENGINES // ALL SYSTEMS COMPLIANT.</p>
     </footer>
+
+    <!-- INTERSECTION OBSERVER HANDLING PURE FADING TRANSITIONS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fadeElements = document.querySelectorAll(".reveal-fade");
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.02,            /* Triggers immediately when 2% of the element enters the viewport */
+                rootMargin: "0px 0px -20px 0px"
+            });
+
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+        });
+    </script>
 
 </body>
 </html>
